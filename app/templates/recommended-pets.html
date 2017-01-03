@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dog App</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    img {
+      border: 5px solid gray;
+    }
+    img.highlight {
+      border: 5px solid red;
+    }
+    .panel-body {
+      padding-left: 0;
+    }
+  </style>
+
+</head>
+<body>
+<div class="container">
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Pets Recommended</h3>
+  </div>
+
+  <div class="panel-body">
+    {% for image_row in images %}
+      <div id="row">
+      {% for image, city, source in image_row %}
+        <div class="col-xs-6 col-sm-2">
+            <img src="/static/adoptable_pics/{{image}}" height=200 width=180>
+            <p><strong style="color:blue">{{city}}</strong> - {{source}}</p>
+        </div>
+      {% end %}
+      </div>
+    {% end %}
+    <div class="row">
+    <div class="col-md-12 center-block">
+      <a href="/"><button id="next" class="btn btn-primary center-block">
+          Back to Main
+      </button></a>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

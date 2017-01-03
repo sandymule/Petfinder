@@ -1,0 +1,16 @@
+--2016-11-22 09:08:25--  http://www.bing.com/cr?IG=9B78955932B3461EB59BB7D88678C594&CID=02760084381266E00886095139236777&rd=1&h=IcLeQMzdn2xpB8zSB1LzcbBDH2zVtLtAa9kMfqzUmLY&v=1&r=http%3a%2f%2f2puppies.com%2fwp-content%2fuploads%2f2015%2f06%2fDoberman-picture.jpg&p=DevEx,5026.1
+Resolving www.bing.com... 204.79.197.200, 13.107.21.200
+Connecting to www.bing.com|204.79.197.200|:80... connected.
+HTTP request sent, awaiting response... 302 OK
+Location: http://2puppies.com/wp-content/uploads/2015/06/Doberman-picture.jpg [following]
+--2016-11-22 09:08:25--  http://2puppies.com/wp-content/uploads/2015/06/Doberman-picture.jpg
+Resolving 2puppies.com... 188.226.194.84
+Connecting to 2puppies.com|188.226.194.84|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 251863 (246K) [image/jpeg]
+Saving to: ‘./Pictures/Dobermann/4’
+
+./Pictures/Doberman  14%[=>                  ]  35.02K   123KB/s               ./Pictures/Doberman  46%[========>           ] 114.21K   201KB/s               ./Pictures/Doberman 100%[===================>] 245.96K   341KB/s    in 0.7s    
+
+2016-11-22 09:08:26 (341 KB/s) - ‘./Pictures/Dobermann/4’ saved [251863/251863]
+

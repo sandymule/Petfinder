@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dog App</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    img {
+      border: 5px solid gray;
+    }
+    img.highlight {
+      border: 5px solid red;
+    }
+    .panel-body {
+      padding-left: 0;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+  </style>
+
+</head>
+<body>
+<div class="container">
+<h2>Dog Recommendations App</h2>
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Select Dogs you like</h3>
+  </div>
+
+  <div class="panel-body">
+
+  <div class="row">
+    <form method="post" enctype="multipart/form-data" action="/">
+      <div class="col-md-5">
+        <div class="input-group">
+          <label class="input-group-btn">
+            <span class="btn btn-primary">
+                Browse&hellip; <input name="photo" type="file" style="display: none;" multiple>
+            </span>
+          </label>
+          <input type="text" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary">Recommend Dogs</button>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+<hr/>
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Select Dogs you like</h3>
+  </div>
+
+  <div class="panel-body">
+    {% for image_row in images %}
+      <div id="row">
+      {% for image in image_row %}
+        <div class="col-xs-6 col-sm-2">
+            <img src="/static/base_pics/{{image}}" height=200 width=180>
+            <p></p>
+        </div>
+      {% end %}
+      </div>
+    {% end %}
+    <div class="row">
+    <div class="col-md-12 center-block">
+      <form id="recommend" action="/recommend" method="post">
+          <input type="hidden" id="images" name="images" value="" />
+          <button id="next" class="btn btn-primary center-block">
+              Recommend Pets!
+          </button>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://d3js.org/d3.v4.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+<script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
+<script type="text/javascript">
+
+
+
+  $(document).ready( function() {
+
+    $(document).on('change', ':file', function() {
+      var input = $(this),
+          numFiles = input.get(0).files ? input.get(0).files.length : 1,
+          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+      input.trigger('fileselect', [numFiles, label]);
+    });
+
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        console.log("here")
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+
+    });
+  });
+
+  d3.selectAll("img")
+    .on("click", function(d) {
+      var img_class = d3.select(this).attr("class");
+      if (img_class == "highlight") {
+        d3.select(this).attr("class", null)
+      } else {
+        d3.select(this).attr("class", "highlight")
+      }
+    });
+
+  d3.select("button#next")
+    .on("click", function() {
+      var images = [];
+      d3.selectAll("img.highlight")
+        .each(function() {
+          images.push(d3.select(this).attr("src"));
+        });
+      d3.select("input#images").attr("value", JSON.stringify(images));
+      document.getElementById("recommend").submit();
+    });
+</script>
+</body>
+</html>
