@@ -1,0 +1,49 @@
+# Virtual Env
+env/
+
+# Working Files - not ready to be shared
+local/
+local*
+*local*
+
+*.png
+*.h5
+*.npy
+*.pkl
+
+#Ipython Notebook
+.ipynb_checkpoints
+
+#Ipython Notebook Temp files
+*copy*.ipynb
+untitled*
+untitled*.ipynb
+*Copy*.ipynb
+Untitled*
+Untitled*.ipynb
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+.DS_Store
+
+# Exclude Data Files
+*.zip
+model-src/AdoptionData/
+model-src/AdoptionPictures/
+model-src/Dog_App/
+model-src/dog_recommendations.json
+model-src/PictureData/
+model-src/Pictures/
+model-src/SamplePictures/
+model-src/VGG/
+*.npy
+*.h5
+*.pkl
+*.png
+Dog_Adoption.key
